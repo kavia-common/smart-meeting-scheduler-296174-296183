@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/common/Card';
 
 /**
@@ -12,6 +13,7 @@ import Card from '../components/common/Card';
  * Colors: primary #0A3977, accent #2F9C95, background #F5F7FA, card #FFFFFF, text #1A1A1A.
  */
 export default function Dashboard() {
+  const navigate = useNavigate();
   const recentCases = []; // In absence of data, empty state is shown.
 
   return (
@@ -23,7 +25,7 @@ export default function Dashboard() {
             Start by uploading evidence in audio or document format. Our assistant will extract key information and set up the case workspace.
           </p>
           <div style={styles.buttonRow}>
-            <button className="button" style={styles.primaryBtn}>Upload Audio</button>
+            <button className="button" style={styles.primaryBtn} onClick={() => navigate('/new-case/upload-audio')}>Upload Audio</button>
             <button className="button ghost" style={styles.outlineBtn}>Upload Document</button>
           </div>
           <p style={styles.helperText}>
@@ -53,7 +55,7 @@ export default function Dashboard() {
       <div style={styles.rightCol}>
         <Card title="Quick Actions">
           <div style={styles.actionsStack}>
-            <button className="button" style={styles.primaryBtn}>Upload Audio</button>
+            <button className="button" style={styles.primaryBtn} onClick={() => navigate('/new-case/upload-audio')}>Upload Audio</button>
             <button className="button ghost" style={styles.outlineBtn}>View All Cases</button>
             <button className="button ghost" style={styles.outlineBtn}>Continue Pending Case</button>
           </div>

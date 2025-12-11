@@ -1,18 +1,29 @@
 import React from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { NavItem } from './NavItem';
 
 // PUBLIC_INTERFACE
-export default function AppLayout({ title = 'Dashboard', actions, children }) {
+export default function AppLayout({ title = 'Dashboard', actions, breadcrumbs = [], children }) {
   /**
    * This component renders a responsive application layout with:
-   * - Left sidebar (fixed width) with navigation
-   * - Main content area with page header and content
+   * - Left sidebar with navigation (Dashboard, Cases, Documents, Settings)
+   * - Main content with optional breadcrumbs, page header and content
    */
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const navItems = [
+    { label: 'Dashboard', to: '/' },
+    { label: 'Cases', to: '/cases' },
+    { label: 'Documents', to: '/documents' },
+    { label: 'Settings', to: '/settings' },
+  ];
+
   return (
     <div style={styles.shell}>
       <aside style={styles.sidebar} aria-label="Primary">
         <div style={styles.brand}>
-          <div style={styles.brandLogo} aria-hidden>🤖</div>
+          <div style={styles.brandLogo} aria-hidden>🎧</div>
           <div>
             <div style={styles.brandTitle}>Arrangement Assistant</div>
             <div style={styles.brandSubtitle}>Case Manager</div>
@@ -20,15 +31,37 @@ export default function AppLayout({ title = 'Dashboard', actions, children }) {
         </div>
         <nav aria-label="Main navigation">
           <ul style={styles.navList}>
-            <NavItem label="Dashboard" active />
-            <NavItem label="Cases" />
-            <NavItem label="Documents" />
-            <NavItem label="Settings" />
+            {navItems.map((item) => (
+              <NavItem
+                key={item.label}
+                label={item.label}
+                active={location.pathname === item.to}
+                onClick={() => navigate(item.to)}
+              />
+            ))}
           </ul>
         </nav>
       </aside>
 
       <main style={styles.main}>
+        {/* Breadcrumbs */}
+        {breadcrumbs && breadcrumbs.length > 0 ? (
+          <nav aria-label="Breadcrumb" style={styles.breadcrumbs}>
+            <ol style={styles.breadcrumbList}>
+              {breadcrumbs.map((bc, idx) => (
+                <li key={idx} style={styles.breadcrumbItem}>
+                  {bc.to ? (
+                    <NavLink to={bc.to} style={styles.breadcrumbLink}>{bc.label}</NavLink>
+                  ) : (
+                    <span aria-current="page" style={styles.breadcrumbCurrent}>{bc.label}</span>
+                  )}
+                  {idx < breadcrumbs.length - 1 && <span style={styles.breadcrumbSeparator}>›</span>}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        ) : null}
+
         <div style={styles.pageHeader}>
           <h1 style={styles.pageTitle}>{title}</h1>
           <div style={styles.actions}>{actions}</div>
@@ -37,10 +70,6 @@ export default function AppLayout({ title = 'Dashboard', actions, children }) {
       </main>
     </div>
   );
-}
-
-function cssVar(name) {
-  return getComputedStyle(document.documentElement).getPropertyValue(name);
 }
 
 const styles = {
@@ -57,7 +86,7 @@ const styles = {
     height: '100vh',
     width: 'var(--sidebar-width)',
     background: 'var(--color-sidebar-bg)',
-    color: '#ffffff', /* enforce white text */
+    color: '#ffffff',
     padding: '24px 16px',
     boxShadow: 'var(--shadow-lg)',
   },
@@ -98,6 +127,32 @@ const styles = {
     padding: 'var(--space-8)',
     background: 'var(--color-bg)',
   },
+  breadcrumbs: {
+    marginBottom: 'var(--space-4)',
+  },
+  breadcrumbList: {
+    display: 'flex',
+    gap: 8,
+    alignItems: 'center',
+    color: 'var(--color-text-medium)',
+    fontSize: 13,
+  },
+  breadcrumbItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  },
+  breadcrumbLink: {
+    color: 'var(--color-text-medium)',
+    textDecoration: 'none',
+  },
+  breadcrumbCurrent: {
+    color: 'var(--color-text-dark)',
+    fontWeight: 600,
+  },
+  breadcrumbSeparator: {
+    color: 'var(--color-text-medium)',
+  },
   pageHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -106,8 +161,8 @@ const styles = {
     marginBottom: 'var(--space-6)',
   },
   pageTitle: {
-    fontSize: 'var(--font-h1)', /* 24px */
-    fontWeight: 'var(--weight-heading)', /* 600 */
+    fontSize: 'var(--font-h1)',
+    fontWeight: 'var(--weight-heading)',
     letterSpacing: -0.2,
     color: 'var(--color-text-dark)'
   },

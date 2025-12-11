@@ -49,3 +49,9 @@
   /* Layout */
   --sidebar-width: 260px;
 }
+
+/* Drag & drop helper states (optional) */
+.dropzone--active {
+  border-color: var(--color-primary);
+  background: #F0F4FA;
+}
