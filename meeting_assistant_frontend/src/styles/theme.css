@@ -1,27 +1,32 @@
 :root {
-  /* Colors */
-  --color-primary: #1A3D7C;
-  --color-secondary: #3FA9A5;
-  --color-bg: #F5F6F8;
-  --color-card: #FFFFFF;
-  --color-sidebar-bg: #111827;
-  --color-sidebar-active: #1A3D7C;
+  /* Colors (token overrides per requirement) */
+  --color-primary: #0A3977;           /* primary */
+  --color-secondary: #2F9C95;         /* accent */
+  --color-bg: #F5F7FA;                /* background */
+  --color-card: #FFFFFF;              /* card */
+  --color-sidebar-bg: #0D1A2D;        /* left sidebar */
+  --color-sidebar-active: rgba(255,255,255,0.08);
   --color-border: #E1E4E8;
-  --color-text-dark: #333333;
-  --color-text-medium: #666666;
+  --color-text-dark: #1A1A1A;         /* text primary */
+  --color-text-medium: #4B5563;       /* muted */
+
   --color-success: #34A853;
   --color-error: #D93025;
   --color-warning: #F9A825;
 
   /* Typography */
   --font-family-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-  --font-size-base: 16px;
+  --font-size-base: 14px;             /* body 14px */
   --line-height-base: 1.5;
 
-  /* Heading scale */
-  --font-h1: 2rem;   /* 32px */
-  --font-h2: 1.5rem; /* 24px */
-  --font-h3: 1.25rem;/* 20px */
+  /* Heading scale (enforce sizing) */
+  --font-h1: 24px;  /* headings 24px, 600 – used for page titles */
+  --font-h2: 18px;  /* card titles 18px, 600 */
+  --font-h3: 18px;  /* align Card header with 18px */
+
+  /* Font weights for reference */
+  --weight-heading: 600;
+  --weight-body: 400;
 
   /* Spacing scale */
   --space-1: 4px;
@@ -33,13 +38,13 @@
   --space-12: 48px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
   --shadow-lg: 0 10px 24px rgba(0,0,0,0.10);
 
   /* Radii */
-  --radius-card: 10px;
-  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-control: 10px;
 
   /* Layout */
   --sidebar-width: 260px;

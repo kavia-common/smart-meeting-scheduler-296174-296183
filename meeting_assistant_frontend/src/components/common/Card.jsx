@@ -23,7 +23,7 @@ const styles = {
     marginBottom: 'var(--space-4)',
   },
   title: {
-    fontSize: 'var(--font-h3)',
+    fontSize: 'var(--font-h2)', /* enforce 18px */
     fontWeight: 600,
     color: 'var(--color-text-dark)',
   },

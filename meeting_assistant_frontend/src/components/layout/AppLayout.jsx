@@ -14,15 +14,15 @@ export default function AppLayout({ title = 'Dashboard', actions, children }) {
         <div style={styles.brand}>
           <div style={styles.brandLogo} aria-hidden>🤖</div>
           <div>
-            <div style={styles.brandTitle}>Meeting Assistant</div>
-            <div style={styles.brandSubtitle}>Scheduler</div>
+            <div style={styles.brandTitle}>Arrangement Assistant</div>
+            <div style={styles.brandSubtitle}>Case Manager</div>
           </div>
         </div>
         <nav aria-label="Main navigation">
           <ul style={styles.navList}>
             <NavItem label="Dashboard" active />
-            <NavItem label="Meetings" />
-            <NavItem label="Availability" />
+            <NavItem label="Cases" />
+            <NavItem label="Documents" />
             <NavItem label="Settings" />
           </ul>
         </nav>
@@ -57,7 +57,7 @@ const styles = {
     height: '100vh',
     width: 'var(--sidebar-width)',
     background: 'var(--color-sidebar-bg)',
-    color: '#fff',
+    color: '#ffffff', /* enforce white text */
     padding: '24px 16px',
     boxShadow: 'var(--shadow-lg)',
   },
@@ -74,14 +74,16 @@ const styles = {
     width: 40,
     height: 40,
     borderRadius: 10,
-    background: 'linear-gradient(135deg, rgba(63,169,165,0.25), rgba(26,61,124,0.25))',
-    border: '1px solid rgba(255,255,255,0.1)',
+    background: 'linear-gradient(135deg, rgba(47,156,149,0.25), rgba(10,57,119,0.25))',
+    border: '1px solid rgba(255,255,255,0.12)',
     boxShadow: '0 6px 16px rgba(0,0,0,0.25) inset',
+    color: '#fff'
   },
   brandTitle: {
     fontWeight: 700,
     letterSpacing: 0.2,
     lineHeight: 1.1,
+    color: '#fff'
   },
   brandSubtitle: {
     fontSize: 12,
@@ -104,9 +106,10 @@ const styles = {
     marginBottom: 'var(--space-6)',
   },
   pageTitle: {
-    fontSize: 'var(--font-h1)',
-    fontWeight: 700,
+    fontSize: 'var(--font-h1)', /* 24px */
+    fontWeight: 'var(--weight-heading)', /* 600 */
     letterSpacing: -0.2,
+    color: 'var(--color-text-dark)'
   },
   actions: {
     display: 'flex',

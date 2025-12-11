@@ -10,7 +10,7 @@ function App() {
    */
   const actions = (
     <>
-      <button className="button">New Meeting</button>
+      <button className="button">New Case</button>
       <button className="button ghost">Sync</button>
     </>
   );
