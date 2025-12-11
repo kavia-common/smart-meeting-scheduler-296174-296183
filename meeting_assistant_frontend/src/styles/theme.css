@@ -1,0 +1,46 @@
+:root {
+  /* Colors */
+  --color-primary: #1A3D7C;
+  --color-secondary: #3FA9A5;
+  --color-bg: #F5F6F8;
+  --color-card: #FFFFFF;
+  --color-sidebar-bg: #111827;
+  --color-sidebar-active: #1A3D7C;
+  --color-border: #E1E4E8;
+  --color-text-dark: #333333;
+  --color-text-medium: #666666;
+  --color-success: #34A853;
+  --color-error: #D93025;
+  --color-warning: #F9A825;
+
+  /* Typography */
+  --font-family-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  /* Heading scale */
+  --font-h1: 2rem;   /* 32px */
+  --font-h2: 1.5rem; /* 24px */
+  --font-h3: 1.25rem;/* 20px */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 24px rgba(0,0,0,0.10);
+
+  /* Radii */
+  --radius-card: 10px;
+  --radius-control: 8px;
+
+  /* Layout */
+  --sidebar-width: 260px;
+}
