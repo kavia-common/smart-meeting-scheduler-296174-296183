@@ -346,6 +346,9 @@ Arrangement Assistant`;
   const renderTranscript = () => (
     <Card title="Full Transcript" footer={
       <>
+        <button className="button ghost" onClick={() => navigate(`/cases/${caseId}/submit`)} title="Proceed to Confirm & Submit">
+          Confirm & Submit
+        </button>
         <button className="button" onClick={downloadTranscript} title="Download transcript as text file">Download Transcript</button>
       </>
     }>

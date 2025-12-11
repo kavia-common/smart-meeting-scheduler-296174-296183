@@ -5,7 +5,8 @@ import Dashboard from './pages/Dashboard';
 import UploadAudio from './pages/UploadAudio';
 import TranscriptsNew from './pages/TranscriptsNew';
 import CaseReview from './pages/CaseReview';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams } from 'react-router-dom';
+import ConfirmAndSubmit from './pages/ConfirmAndSubmit';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 // Helper wrapper to inject title/actions/breadcrumbs per route
 function RoutedLayout({ children }) {
@@ -38,6 +39,15 @@ function RoutedLayout({ children }) {
       { label: 'Cases', to: '/cases' },
       { label: `Case ${caseId}` },
       { label: 'Review' },
+    ];
+  } else if (/^\/cases\/[^/]+\/submit/.test(location.pathname)) {
+    const caseId = location.pathname.split('/')[2] || 'Unknown';
+    title = 'Confirm and Submit';
+    breadcrumbs = [
+      { label: 'Dashboard', to: '/' },
+      { label: 'Cases', to: '/cases' },
+      { label: `Case ${caseId}` },
+      { label: 'Submit' },
     ];
   }
 
@@ -92,6 +102,14 @@ function App() {
           element={
             <RoutedLayout>
               <CaseReview />
+            </RoutedLayout>
+          }
+        />
+        <Route
+          path="/cases/:caseId/submit"
+          element={
+            <RoutedLayout>
+              <ConfirmAndSubmit />
             </RoutedLayout>
           }
         />
