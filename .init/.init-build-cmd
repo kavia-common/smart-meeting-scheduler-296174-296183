@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/smart-meeting-scheduler-296174-296183/meeting_assistant_frontend"
+}
