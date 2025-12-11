@@ -4,7 +4,8 @@ import AppLayout from './components/layout/AppLayout';
 import Dashboard from './pages/Dashboard';
 import UploadAudio from './pages/UploadAudio';
 import TranscriptsNew from './pages/TranscriptsNew';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import CaseReview from './pages/CaseReview';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // Helper wrapper to inject title/actions/breadcrumbs per route
 function RoutedLayout({ children }) {
@@ -29,12 +30,21 @@ function RoutedLayout({ children }) {
       { label: 'Start New Case' },
       { label: 'Transcription' },
     ];
+  } else if (/^\/cases\/[^/]+\/review/.test(location.pathname)) {
+    const caseId = location.pathname.split('/')[2] || 'Unknown';
+    title = `Case Review`;
+    breadcrumbs = [
+      { label: 'Dashboard', to: '/' },
+      { label: 'Cases', to: '/cases' },
+      { label: `Case ${caseId}` },
+      { label: 'Review' },
+    ];
   }
 
   const actions = (
     <>
       <button className="button" onClick={() => navigate('/new-case/upload-audio')}>New Case</button>
-      <button className="button ghost">Sync</button>
+      <button className="button ghost" title="Synchronize latest data">Sync</button>
     </>
   );
 
@@ -74,6 +84,14 @@ function App() {
           element={
             <RoutedLayout>
               <TranscriptsNew />
+            </RoutedLayout>
+          }
+        />
+        <Route
+          path="/cases/:caseId/review"
+          element={
+            <RoutedLayout>
+              <CaseReview />
             </RoutedLayout>
           }
         />
